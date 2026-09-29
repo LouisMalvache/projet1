@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql2');
 
-const connection = mysql.createConnection({
+/*const connection = mysql.createConnection({
   host: process.env.HOST,
   user: process.env.USER,
   password: process.env.PASSWORD,
@@ -15,9 +15,9 @@ connection.connect((err) => {
     return;
   }
   console.log('Connecté à la base de données MySQL.');
-});
+});*/
 
-app.use(express.static('Public'));
+app.use(express.static('front/html'));
 app.use(express.json());
 
 
@@ -80,11 +80,8 @@ app.post('/connexion', (req, res) => {
     });
 });
 
-
-
-
-
+// Démarrage du serveur
 app.listen(3000, () => {
   let monIp = require("ip").address();
   console.log(`Server running on http://${monIp}:3000`);
-});
+});                                                            

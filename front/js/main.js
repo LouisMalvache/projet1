@@ -23,22 +23,6 @@ monBouton.addEventListener('click', () => {
         });
 });
 
-// Ajout d'un écouteur d'événement sur le bouton de vote
-voteButton.addEventListener('click', () => {
-    const selectedUserId = usersList.value;
-    fetch('/vote', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ IdUser: selectedUserId, candidateId: usersList.value })
-    }).then(response => response.text())
-        .then(data => {
-            alert(data);
-        });
-});
-
-
 
 
 // Charger la liste des utilisateurs au chargement de la page
@@ -59,6 +43,7 @@ window.onload = () => {
         });
 }
 
+// Ajout d'un écouteur d'événement sur le bouton de connexion
 const loginButton = document.getElementById('loginButton');
 loginButton.addEventListener('click', () => {
     const loginInput = document.getElementById('loginInput').value;
