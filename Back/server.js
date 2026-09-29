@@ -3,10 +3,10 @@ const app = express();
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-  host: '172.29.18.',
-  user: 'root',
-  password: 'roots',
-  database: 'projet1'
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE
 });
 
 connection.connect((err) => {
@@ -24,12 +24,6 @@ app.use(express.json());
 
 app.get('/login', (req, res) => {
   res.send('<h1>Bienvenue sur la page de login  </h1>');
-});
-
-
-
-app.get('/info', (req, res) => {
-  res.json({ cle1: 'valeur1', cle2: 'valeur2' });
 });
 
 app.get('/Users', (req, res) => {
