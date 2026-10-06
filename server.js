@@ -2,14 +2,14 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql2');
 
-const connection = mysql.createConnection({
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'projet',
+  password: 'roots',
+  database: 'projet1'
 });
 
-connection.connect((err) => {
+db.connect((err) => {
   if (err) {
     console.error('Erreur de connexion à la base de données :', err);
     return;
@@ -27,7 +27,7 @@ app.get('/login', (req, res) => {
 });
 
 app.get('/Users', (req, res) => {
-  connection.query('SELECT * FROM Users', (err, results) => {
+  db.query('SELECT * FROM user', (err, results) => {
     if (err) {
       console.error('Erreur lors de la récupération des utilisateurs :', err);
       res.status(500).json({ message: 'Erreur serveur' });
@@ -41,7 +41,7 @@ app.get('/Users', (req, res) => {
 
 app.post('/register', (req, res) => {
 
-  connection.query(
+  db.query(
     'INSERT INTO inscription (login, password) VALUES (?, ?)',
     [req.body.inputValue, req.body.inputValue2],
     (err, results) => {
